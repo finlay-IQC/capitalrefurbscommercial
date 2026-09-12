@@ -22,16 +22,16 @@
   --muted:      #5a6068;
   --muted-invert: rgba(255,255,255,.72);
 
-  /* Imagery — client project photography.
-     PRODUCTION NOTE: these are served from the client's Google Drive.
-     Download the files, drop them in /assets and swap the URLs below
-     for local paths (e.g. url("assets/hero.jpg")) for faster loads
-     and full control. */
-  --img-hero:   url("https://drive.google.com/thumbnail?id=1h_gdtluohkVQQBWP6uAKimJPcdsWTNJr&sz=w1920");
-  --img-mech:   url("https://drive.google.com/thumbnail?id=1P2SgzhJ324YCtPF02Y8XcyPm6752AC4N&sz=w1600");
-  --img-value:  url("https://drive.google.com/thumbnail?id=1zQctiLdzXPgz5uY7ipUucD5E6sZZuSpp&sz=w1600");
-  --img-final:  url("https://drive.google.com/thumbnail?id=1k4D-C9RD6O4-lRc6GihfMAkzeex2FKER&sz=w1920");
-  --img-thanks: url("https://drive.google.com/thumbnail?id=1qnAvKywfRQXGQWaKprbp8rMOSuVYS6uX&sz=w1920");
+  /* Imagery — the five full-bleed photo areas.
+     These point at files in /assets. Drop your photos in there using these
+     exact names and they appear automatically. See assets/README.md.
+     Until those files exist, script.js falls back to the client's Drive
+     copies so the page never looks broken. */
+  --img-hero:   url("assets/hero.jpg");
+  --img-mech:   url("assets/mechanism.jpg");
+  --img-value:  url("assets/call.jpg");
+  --img-final:  url("assets/final-cta.jpg");
+  --img-thanks: url("assets/thank-you.jpg");
 
   /* Rhythm */
   --pad-x: 24px;
@@ -47,6 +47,21 @@
     --pad-x: 40px;
     --sect-y: 100px;
   }
+}
+
+/* -------------------------------------------------------------------
+   1b. FALLBACK IMAGERY
+   script.js adds .no-assets to <html> if /assets has not been filled in
+   yet. These are the client's Google Drive copies — slow and rate
+   limited, fine for a preview, not for live ad spend. Once the files in
+   /assets exist this block never applies and Drive is never contacted.
+   ------------------------------------------------------------------- */
+.no-assets {
+  --img-hero:   url("https://drive.google.com/thumbnail?id=1h_gdtluohkVQQBWP6uAKimJPcdsWTNJr&sz=w1920");
+  --img-mech:   url("https://drive.google.com/thumbnail?id=1P2SgzhJ324YCtPF02Y8XcyPm6752AC4N&sz=w1600");
+  --img-value:  url("https://drive.google.com/thumbnail?id=1zQctiLdzXPgz5uY7ipUucD5E6sZZuSpp&sz=w1600");
+  --img-final:  url("https://drive.google.com/thumbnail?id=1k4D-C9RD6O4-lRc6GihfMAkzeex2FKER&sz=w1920");
+  --img-thanks: url("https://drive.google.com/thumbnail?id=1qnAvKywfRQXGQWaKprbp8rMOSuVYS6uX&sz=w1920");
 }
 
 /* -------------------------------------------------------------------
@@ -254,7 +269,7 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 }
 .hero__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,11,13,.62) 0%, rgba(10,11,13,.72) 55%, rgba(10,11,13,.86) 100%);
+  background: linear-gradient(180deg, rgba(10,11,13,.72) 0%, rgba(10,11,13,.78) 55%, rgba(10,11,13,.9) 100%);
 }
 .hero__inner {
   position: relative;
@@ -621,14 +636,14 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 }
 @media (min-width: 760px) {
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .gallery__item--wide { grid-column: 1 / -1; min-height: 460px; }
   .gallery__item { min-height: 420px; }
+  .gallery__item--wide { grid-column: 1 / -1; min-height: 460px; }
   .gallery__item figcaption { font-size: 15px; padding: 56px 26px 22px; }
 }
 @media (min-width: 1100px) {
   .proof h2 { font-size: 40px; }
-  .gallery__item--wide { min-height: 560px; }
   .gallery__item { min-height: 460px; }
+  .gallery__item--wide { min-height: 560px; }
 }
 
 /* Company credibility block */

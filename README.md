@@ -14,7 +14,8 @@ Upload the files to any static host and it runs.
 ├── privacy.html    Privacy policy (placeholder — see note below)
 ├── terms.html      Terms of service (placeholder — see note below)
 ├── styles.css      All styling
-└── script.js       UTM capture, form decoration, sticky CTA, FAQ accordion
+├── script.js       UTM capture, form decoration, sticky CTA, FAQ accordion
+└── assets/         Project photos — see assets/README.md for the filenames
 ```
 
 ## Funnel flow
@@ -56,27 +57,23 @@ run paid traffic.
 
 ## Images
 
-Project photography is currently hotlinked from the client's Google Drive folder
-using `https://drive.google.com/thumbnail?id=<FILE_ID>&sz=w1600`.
+All 15 photo slots are filled with the client's project photography, resized and
+compressed (about 2.5MB total across both pages). `assets/README.md` lists which
+photo is in which slot, the caption on each, and the sizes to use when replacing
+one.
 
-**This is fine for testing but should be replaced before scaling spend.** Drive
-is slow, can rate-limit, and gives you no control over compression.
+To swap a photo: keep the filename, resize and compress it, overwrite the file.
+No code changes.
 
-To swap in self-hosted images:
-
-1. Download the photos, resize to ~1600px wide, compress, save as WebP/JPEG in `/assets`.
-2. Background images: edit the `--img-*` variables in the `:root` block at the
-   top of `styles.css` (hero, mechanism, what-you-get, final CTA, thank-you).
-3. Gallery images: edit the `src` on each `<figure class="gallery__item">` in
-   `index.html` and `thank-you.html`.
-
-If an image fails to load the section falls back to the dark brand colour, so
-the page never breaks — but it does lose its strongest selling tool.
+`script.js` still carries a fallback to the client's Google Drive copies, used
+only if a file in `/assets` is ever missing — it does not fire while the folder
+is complete. Confirm with the browser's Network tab: there should be no
+`drive.google.com` requests.
 
 ### Captions
-The gallery captions are deliberately generic because the specific project,
-sector and outcome for each photo were not confirmed. Replace them with the real
-details (project type + area + outcome) once you have them from the client.
+The gallery captions describe what is visible in each photo. If the client
+supplies the real project details — name, sector, area, timescale — edit the
+`<figcaption>` and matching `alt` in `index.html` and `thank-you.html`.
 
 ## Colour
 
