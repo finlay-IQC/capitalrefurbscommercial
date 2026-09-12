@@ -269,7 +269,7 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 }
 .hero__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,11,13,.62) 0%, rgba(10,11,13,.72) 55%, rgba(10,11,13,.86) 100%);
+  background: linear-gradient(180deg, rgba(10,11,13,.72) 0%, rgba(10,11,13,.78) 55%, rgba(10,11,13,.9) 100%);
 }
 .hero__inner {
   position: relative;
@@ -636,14 +636,14 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 }
 @media (min-width: 760px) {
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .gallery__item--wide { grid-column: 1 / -1; min-height: 460px; }
   .gallery__item { min-height: 420px; }
+  .gallery__item--wide { grid-column: 1 / -1; min-height: 460px; }
   .gallery__item figcaption { font-size: 15px; padding: 56px 26px 22px; }
 }
 @media (min-width: 1100px) {
   .proof h2 { font-size: 40px; }
-  .gallery__item--wide { min-height: 560px; }
   .gallery__item { min-height: 460px; }
+  .gallery__item--wide { min-height: 560px; }
 }
 
 /* Company credibility block */

@@ -57,31 +57,23 @@ run paid traffic.
 
 ## Images
 
-All photography points at files in `/assets`. **Drop your photos in there using
-the filenames listed in `assets/README.md` and they appear automatically — no
-code changes needed.**
+All 15 photo slots are filled with the client's project photography, resized and
+compressed (about 2.5MB total across both pages). `assets/README.md` lists which
+photo is in which slot, the caption on each, and the sizes to use when replacing
+one.
 
-Until those files exist the page falls back to the client's Google Drive copies,
-so it never looks broken while you get the images ready. That fallback is for
-previewing only — Drive is slow and rate-limits — so fill `/assets` before you
-put real spend behind the page.
+To swap a photo: keep the filename, resize and compress it, overwrite the file.
+No code changes.
 
-How the fallback works:
-
-- `script.js` probes `assets/hero.jpg` on load. A miss adds `.no-assets` to
-  `<html>`, which swaps every `--img-*` variable in `styles.css` over to Drive.
-- Each gallery `<img>` carries a `data-fallback` attribute and swaps itself on
-  error, so a partly filled `/assets` folder still works.
-- Once `/assets` is populated, nothing contacts Drive at all. Verify in the
-  browser's Network tab: there should be no `drive.google.com` requests.
-
-The 15 filenames, what each slot is, and how to resize and compress the photos
-are all in **`assets/README.md`**.
+`script.js` still carries a fallback to the client's Google Drive copies, used
+only if a file in `/assets` is ever missing — it does not fire while the folder
+is complete. Confirm with the browser's Network tab: there should be no
+`drive.google.com` requests.
 
 ### Captions
-The gallery captions are deliberately generic because the specific project,
-sector and outcome for each photo were not confirmed. Replace them with the real
-details (project type + area + outcome) once you have them from the client.
+The gallery captions describe what is visible in each photo. If the client
+supplies the real project details — name, sector, area, timescale — edit the
+`<figcaption>` and matching `alt` in `index.html` and `thank-you.html`.
 
 ## Colour
 

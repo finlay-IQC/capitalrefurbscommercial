@@ -1,75 +1,75 @@
-# Photos go in this folder
+# Project photos
 
-Save 15 photos here using the **exact filenames** in the table below. That is the
-only thing you need to do — no code changes. The page picks them up automatically.
+All 15 slots are filled. These came from the client's photography of the sports
+apparel brand fit-out — showroom, offices, meeting rooms and staff kitchen.
 
-Until these files exist, the site falls back to loading the photos from the
-client's Google Drive, so nothing looks broken while you get them ready. As soon
-as a file appears here, the local copy is used instead and Drive is never
-contacted for it again.
+Every file has been resized and compressed for web use. The originals were
+3000px wide and 400KB–1.3MB each; these are 1200–1920px and 70–334KB, totalling
+about 2.5MB across both pages.
 
-## Before you save them
+## What is where
 
-Every photo needs two things doing to it first:
+### Full-bleed background photos
 
-1. **Resize to 1600px wide.** The originals are 4000px+ and 4–7MB each. A page
-   with fifteen of those on it will not load on a phone.
-2. **Compress.** Aim for **under 300KB** per file. Save as JPEG, quality ~75.
-
-Free tool that does both in your browser, nothing to install:
-**https://squoosh.app** — drag a photo in, set Resize to width 1600, choose
-MozJPEG quality 75, download.
-
-## The 15 files
-
-### Big full-width photo areas (5)
-
-| Filename | Where it appears | Pick a photo that... |
+| File | Where it appears | Size |
 |---|---|---|
-| `hero.jpg` | Top of the landing page, behind the headline | is your single best shot — wide, well lit, and still reads well with a dark layer over it and text on top |
-| `mechanism.jpg` | Left half of "Why our projects land on time" | shows quality of finish or work in progress |
-| `call.jpg` | Left half of "What you get from the call" | shows a finished interior |
-| `final-cta.jpg` | Behind the last "Get a space your business deserves" block | is wide and impressive, goes very dark behind text |
-| `thank-you.jpg` | Top of the thank-you page | is a strong finished space |
+| `hero.jpg` | Landing page hero, behind the headline | 1920px |
+| `mechanism.jpg` | Left half of "Why our projects land on time" | 1400px |
+| `call.jpg` | Left half of "What you get from the call" | 1400px |
+| `final-cta.jpg` | Behind the closing CTA | 1920px |
+| `thank-you.jpg` | Thank-you page hero | 1920px |
 
-Avoid anything with important detail in the middle for `hero.jpg`,
-`final-cta.jpg` and `thank-you.jpg` — text sits over the centre of those three.
+### Landing page gallery
 
-### Landing page gallery (5)
+| File | Caption | Cell |
+|---|---|---|
+| `gallery-1.jpg` | Retail display and showroom fit-out | Full width |
+| `gallery-2.jpg` | Open plan office and workstations | Half |
+| `gallery-3.jpg` | Private office and meeting room | Half |
+| `gallery-4.jpg` | Staff kitchen and breakout area | Half |
+| `gallery-5.jpg` | Meeting space and presentation area | Half |
 
-| Filename | Size on the page |
-|---|---|
-| `gallery-1.jpg` | Full width — use a strong one |
-| `gallery-2.jpg` | Half width |
-| `gallery-3.jpg` | Half width |
-| `gallery-4.jpg` | Half width |
-| `gallery-5.jpg` | Full width — use a strong one |
+### Thank-you page gallery
 
-### Thank-you page gallery (5)
+| File | Caption | Cell |
+|---|---|---|
+| `thanks-1.jpg` | Bespoke display joinery and wall fixings | Full width |
+| `thanks-2.jpg` | Workstations and glazed partitions | Half |
+| `thanks-3.jpg` | Open plan desking | Half |
+| `thanks-4.jpg` | Fitted kitchen and tea point | Half |
+| `thanks-5.jpg` | Showroom, meeting space and office in one | Half |
 
-| Filename | Size on the page |
-|---|---|
-| `thanks-1.jpg` | Full width |
-| `thanks-2.jpg` | Half width |
-| `thanks-3.jpg` | Half width |
-| `thanks-4.jpg` | Half width |
-| `thanks-5.jpg` | Half width... use a strong one, it sits full width |
+## Replacing or adding photos
 
-You can reuse the same photo in more than one slot — just save it twice under
-both names.
+Keep the filenames the same and the page picks up the new image automatically.
+
+Before saving a replacement, resize and compress it:
+
+- Background photos: 1920px wide (or 1400px for `mechanism` and `call`)
+- Gallery photos: 1600px wide for the full-width cell, 1200px for half cells
+- Aim for under 300KB per file, JPEG quality around 75
+
+**https://squoosh.app** does both in the browser — drag the photo in, set Resize
+to the width above, choose MozJPEG quality 75, download.
+
+Three of these have headline text over the middle of them — `hero.jpg`,
+`final-cta.jpg` and `thank-you.jpg` — so avoid replacements with important
+detail dead centre, or anything very bright and evenly lit.
+
+## A note on the grid
+
+Each gallery is one full-width cell plus four half-width cells. If you add or
+remove images, **keep the number of half-width cells even** or the grid will
+leave an empty square. The full-width one carries
+`class="gallery__item gallery__item--wide"`; the others carry
+`class="gallery__item"`.
 
 ## Captions
 
-The captions under the gallery photos are currently generic, because the project
-details for each photo were never confirmed. Once you know what each one is,
-edit the `<figcaption>` lines in `index.html` and `thank-you.html` to say the
-real thing — project type, area, and outcome. For example:
+The captions describe what is visible in each photo. If you get the real project
+details from the client — project name, sector, area, timescale — they will read
+better still. Edit the `<figcaption>` lines in `index.html` and `thank-you.html`:
 
     <figcaption>11-week CAT B office fit-out &mdash; Shoreditch</figcaption>
 
-## Checking it worked
-
-Open the page and look at the hero. If the photo shows, it is working. If you
-want to be certain the local files are being used and not Drive, open the
-browser's developer tools, go to the Network tab and reload — you should see no
-requests to `drive.google.com`.
+Update the `alt` text on the same `<img>` to match.
