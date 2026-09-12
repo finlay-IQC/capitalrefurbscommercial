@@ -358,14 +358,6 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 }
 .form-section h2 { font-size: 28px; }
 .form-section__copy { max-width: var(--measure); margin-bottom: 32px; }
-.form-section__copy p { color: var(--muted); }
-.form-section__call { font-weight: 600; color: var(--text) !important; }
-.form-section__call a {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 2px solid var(--accent);
-}
-.form-section__call a:hover { color: var(--accent); }
 
 /* Reserve the embed height up front so nothing shifts when it loads. */
 .form-shell {
