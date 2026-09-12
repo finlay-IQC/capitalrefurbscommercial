@@ -378,17 +378,13 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 
 @media (min-width: 980px) {
   .form-section h2 { font-size: 40px; }
+  /* Copy sits above the form, not beside it. The column is narrowed so the
+     embed does not stretch the full width of the page. */
   .form-section__inner {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 56px;
-    align-items: start;
+    max-width: 820px;
+    margin: 0 auto;
   }
-  .form-section__copy {
-    margin-bottom: 0;
-    position: sticky;
-    top: 32px;
-  }
+  .form-section__copy { margin-bottom: 40px; }
 }
 
 /* -------------------------------------------------------------------
