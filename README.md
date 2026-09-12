@@ -14,7 +14,8 @@ Upload the files to any static host and it runs.
 ├── privacy.html    Privacy policy (placeholder — see note below)
 ├── terms.html      Terms of service (placeholder — see note below)
 ├── styles.css      All styling
-└── script.js       UTM capture, form decoration, sticky CTA, FAQ accordion
+├── script.js       UTM capture, form decoration, sticky CTA, FAQ accordion
+└── assets/         Project photos — see assets/README.md for the filenames
 ```
 
 ## Funnel flow
@@ -56,22 +57,26 @@ run paid traffic.
 
 ## Images
 
-Project photography is currently hotlinked from the client's Google Drive folder
-using `https://drive.google.com/thumbnail?id=<FILE_ID>&sz=w1600`.
+All photography points at files in `/assets`. **Drop your photos in there using
+the filenames listed in `assets/README.md` and they appear automatically — no
+code changes needed.**
 
-**This is fine for testing but should be replaced before scaling spend.** Drive
-is slow, can rate-limit, and gives you no control over compression.
+Until those files exist the page falls back to the client's Google Drive copies,
+so it never looks broken while you get the images ready. That fallback is for
+previewing only — Drive is slow and rate-limits — so fill `/assets` before you
+put real spend behind the page.
 
-To swap in self-hosted images:
+How the fallback works:
 
-1. Download the photos, resize to ~1600px wide, compress, save as WebP/JPEG in `/assets`.
-2. Background images: edit the `--img-*` variables in the `:root` block at the
-   top of `styles.css` (hero, mechanism, what-you-get, final CTA, thank-you).
-3. Gallery images: edit the `src` on each `<figure class="gallery__item">` in
-   `index.html` and `thank-you.html`.
+- `script.js` probes `assets/hero.jpg` on load. A miss adds `.no-assets` to
+  `<html>`, which swaps every `--img-*` variable in `styles.css` over to Drive.
+- Each gallery `<img>` carries a `data-fallback` attribute and swaps itself on
+  error, so a partly filled `/assets` folder still works.
+- Once `/assets` is populated, nothing contacts Drive at all. Verify in the
+  browser's Network tab: there should be no `drive.google.com` requests.
 
-If an image fails to load the section falls back to the dark brand colour, so
-the page never breaks — but it does lose its strongest selling tool.
+The 15 filenames, what each slot is, and how to resize and compress the photos
+are all in **`assets/README.md`**.
 
 ### Captions
 The gallery captions are deliberately generic because the specific project,

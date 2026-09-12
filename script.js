@@ -13,6 +13,52 @@
   'use strict';
 
   /* -----------------------------------------------------------------
+     0. IMAGE FALLBACK
+     All photography points at /assets. If those files have not been
+     added yet, fall back to the client's Google Drive copies so the page
+     still looks finished.
+
+     Background photos: one probe on assets/hero.jpg decides it. A miss
+     puts .no-assets on <html>, which swaps every --img-* variable over
+     in styles.css.
+
+     Gallery photos: each <img> carries data-fallback and swaps itself on
+     error, so a partly filled /assets folder still works.
+
+     Once /assets is populated, nothing here contacts Drive at all.
+     ----------------------------------------------------------------- */
+  function initImageFallback() {
+    var galleryImages = document.querySelectorAll('img[data-fallback]');
+    Array.prototype.forEach.call(galleryImages, function (img) {
+      img.addEventListener('error', function onError() {
+        img.removeEventListener('error', onError);   /* never loop */
+        var fallback = img.getAttribute('data-fallback');
+        if (fallback) {
+          img.setAttribute('referrerpolicy', 'no-referrer');
+          img.src = fallback;
+        }
+      });
+      /* A cached 404 can land before the listener is attached. */
+      if (img.complete && img.naturalWidth === 0) {
+        img.dispatchEvent(new Event('error'));
+      }
+    });
+
+  }
+
+  /* Started immediately rather than inside boot() so the class lands as
+     early as possible and the hero does not flash dark. */
+  (function probeLocalAssets() {
+    var probe = new Image();
+    probe.onerror = function () {
+      var setClass = function () { document.documentElement.classList.add('no-assets'); };
+      if (document.documentElement) setClass();
+      else document.addEventListener('DOMContentLoaded', setClass);
+    };
+    probe.src = 'assets/hero.jpg';
+  })();
+
+  /* -----------------------------------------------------------------
      1. UTM HANDLING
      ----------------------------------------------------------------- */
   var TRACKED = [
@@ -207,6 +253,7 @@
      BOOT
      ----------------------------------------------------------------- */
   function boot() {
+    initImageFallback();
     decorateFormEmbed();
     decorateInternalLinks();
     initScrollCtas();
