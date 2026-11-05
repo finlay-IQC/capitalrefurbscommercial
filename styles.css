@@ -921,3 +921,10 @@ ul, ol { margin: 0 0 1.1em; padding-left: 1.15em; }
 @media (min-width: 860px) {
   .legal h1 { font-size: 42px; }
 }
+
+/* Small phones: tighter button padding so "Book Your Free Design Consultation"
+   fits on one line from 375px up, including the sticky bar next to the call button. */
+@media (max-width: 420px) {
+  .btn { padding-left: 14px; padding-right: 14px; font-size: 16px; letter-spacing: 0; }
+  .stickybar__main { padding-left: 8px; padding-right: 8px; font-size: 14.5px; letter-spacing: 0; }
+}
